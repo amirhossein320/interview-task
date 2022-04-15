@@ -5,6 +5,7 @@ import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.net.NetworkInfo
 import android.os.Build
+import java.io.IOException
 
 
 fun Context.hasNetwork(): Boolean {
@@ -26,3 +27,8 @@ fun Context.hasNetwork(): Boolean {
     }
 }
 
+
+class NoConnectivityException : IOException() {
+    override val message: String
+        get() = "اتصال به اینترنت برقرار نمی باشد"
+}

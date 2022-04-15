@@ -21,8 +21,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField "String", "SERVER_URL", '"https://stage.achareh.ir/api/karfarmas/"'
+            buildConfigField "String", "AUTH_USERNAME", '"09822222222"'
+            buildConfigField "String", "AUTH_PASS", '"Sana12345678"'
+        }
         release {
             minifyEnabled false
+            buildConfigField "String", "SERVER_URL", '"https://stage.achareh.ir/api/karfarmas/"'
+            buildConfigField "String", "AUTH_USERNAME", '"09822222222"'
+            buildConfigField "String", "AUTH_PASS", '"Sana12345678"'
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -38,7 +46,7 @@ android {
 dependencies {
 
     def lifecycle_version = "2.5.0-alpha06"
-    def retrofit_version = "2.5.0-alpha06"
+    def retrofit_version = "2.9.0"
 
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
