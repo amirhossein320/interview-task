@@ -9,8 +9,8 @@ open class BaseRepository {
 
     open suspend fun <T : Any> fetch(
         call: Response<T>,
-        onSuccess: (T?) -> Unit,
-        onFailure: (message: String?) -> Unit
+        onSuccess: suspend (T?) -> Unit,
+        onFailure: suspend (message: String?) -> Unit
     ) {
         try {
             call.let {

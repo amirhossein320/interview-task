@@ -7,13 +7,13 @@ class AddressRepository(
 ) : BaseRepository() {
 
     suspend fun all(
-        onSuccess: (List<AddressResponse>?) -> Unit,
-        onFailure: (message: String?) -> Unit
+        onSuccess: suspend (List<AddressResponse>?) -> Unit,
+        onFailure: suspend (message: String?) -> Unit
     ) = fetch(addressService.all(), onSuccess, onFailure)
 
     suspend fun add(
         address: AddressDto,
-        onSuccess: (AddressResponse?) -> Unit,
-        onFailure: (message: String?) -> Unit
+        onSuccess: suspend (AddressResponse?) -> Unit,
+        onFailure: suspend (message: String?) -> Unit
     ) = fetch(addressService.add(address), onSuccess, onFailure)
 }
