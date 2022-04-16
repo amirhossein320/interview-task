@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
-    android:layoutDirection="ltr">
+    android:layoutDirection="ltr"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/toolbarTitle"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginEnd="@dimen/medium_margin"
         android:gravity="center"
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
@@ -22,9 +23,9 @@
 
     <ImageView
         android:id="@+id/toolbarIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_width="?actionBarSize"
+        android:layout_height="0dp"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

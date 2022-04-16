@@ -1,5 +1,20 @@
 <resources>
     <string name="app_name">Interview-task</string>
-    <string name="add_address">افزودن آدرس</string>
+    <string name="add_address">ثبت نام</string>
     <string name="addresses">آدرس ها</string>
+    <string name="insert_details">لطفا اطلاعات خود را وارد کنید</string>
+    <string name="name">نام</string>
+    <string name="lastName">نام خانوادگی</string>
+    <string name="mobile">تلفن همراه</string>
+    <string name="phoneNumber">تلفن ثابت</string>
+    <string name="male">آقا</string>
+    <string name="female">خانم</string>
+    <string name="nextStep">مرحله بعد</string>
+    <string name="gender">جنسیت</string>
+    <string name="address">آدرس</string>
+    <string name="errNameEmpty">نام الزامی است</string>
+    <string name="errLastNameEmpty">نام خانوادگی الزامی است</string>
+    <string name="errPhoneEmpty">تلفن ثابت الزامی است</string>
+    <string name="errMobileEmpty">تلفن همراه الزامی است</string>
+    <string name="errAddressEmpty">آدرس الزامی است</string>
 </resources>

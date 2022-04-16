@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ir.sanags.interviewTask.R
 import ir.sanags.interviewTask.data.api.address.AddressResponse
 import ir.sanags.interviewTask.databinding.FragmentAddressesBinding
+import ir.sanags.interviewTask.presenter.addAdress.AddAddressFragment
 import ir.sanags.interviewTask.presenter.base.BaseFragment
 import ir.sanags.interviewTask.presenter.base.UiState
 import ir.sanags.interviewTask.util.gone
@@ -43,6 +44,7 @@ class AddressesFragment :
         setupToolbar()
         setupRecycler()
         onAddAddressClick()
+        onAddressesRetry()
         manageState()
         with(viewModel) {
             if (isFirstTime || isGoneToAddFragment) {
@@ -60,6 +62,11 @@ class AddressesFragment :
     }
 
     private fun onAddAddressClick() {
+        binding.btnAddAddress.setOnClickListener { navigateTo(AddAddressFragment()) }
+    }
+
+    private fun onAddressesRetry() {
+        binding.uiState.txtMessage.setOnClickListener { viewModel.getAddresses() }
     }
 
     private fun manageState() {
@@ -106,7 +113,7 @@ class AddressesFragment :
                         uiState.progressBar.gone()
                         uiState.txtMessage.apply {
                             visible()
-                            text = it
+                            text = "$it\n\nتلاش مجدد"
                         }
                     }
                 }

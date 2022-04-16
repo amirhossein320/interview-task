@@ -13,15 +13,25 @@ data class AddressResponse(
 
 data class AddressDto(
     val region: Int = 1,
-    val address: String,
+    var address: String,
     @SerializedName("lat") val latitude: Double,
     @SerializedName("lng") val longitude: Double,
-    @SerializedName("coordinate_mobile") val coordinateMobile: Long,
-    @SerializedName("coordinate_phone_number") val coordinatePhoneNumber: Long,
-    @SerializedName("first_name") val firstName: String,
-    @SerializedName("last_name") val lastName: String,
-    val gender: String
-)
+    @SerializedName("coordinate_mobile") var coordinateMobile: Long,
+    @SerializedName("coordinate_phone_number") var coordinatePhoneNumber: Long,
+    @SerializedName("first_name") var firstName: String,
+    @SerializedName("last_name") var lastName: String,
+    var gender: String
+){
+
+    companion object {
+        fun init() = AddressDto(
+            address = "", latitude = 0.0, longitude = 0.0,
+            coordinateMobile = 0, coordinatePhoneNumber = 0,
+            lastName = "", firstName = "", gender = Gender.MALE.gender
+        )
+    }
+
+}
 
 
-enum class Gender(gender: String) { MALE("Male"), FEMALE("Female") }
+enum class Gender(val gender: String) { MALE("Male"), FEMALE("Female") }

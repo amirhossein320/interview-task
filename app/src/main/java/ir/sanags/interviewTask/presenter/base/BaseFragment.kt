@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import com.google.android.material.snackbar.Snackbar
 import ir.sanags.interviewTask.presenter.main.MainActivity
 
 open class BaseFragment<viewBinding : ViewBinding>(
@@ -43,4 +44,7 @@ open class BaseFragment<viewBinding : ViewBinding>(
     open fun getInjection() = (requireActivity() as MainActivity).getInjection()
 
     open fun getOrientation() = requireActivity().resources.configuration.orientation
+
+    open fun showSnackMessage(message: String) =
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
 }

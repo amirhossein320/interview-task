@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey"
+    android:layoutDirection="ltr">
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layout_width="0dp"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/medium_margin"
+        android:text="@string/insert_details"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="@dimen/medium_margin"
+        app:layout_constraintBottom_toTopOf="@+id/btnNext"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <EditText
+                android:id="@+id/edtName"
+                android:layout_width="0dp"
+                android:imeOptions="actionNext"
+                android:layout_height="?actionBarSize"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="16dp"
+                android:drawableStart="@drawable/ic_grey_check_circle_24"
+                android:gravity="center_vertical|right"
+                android:hint="@string/name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toEndOf="@+id/edtLastName"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edtLastName"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="8dp"
+                android:imeOptions="actionNext"
+                android:drawableStart="@drawable/ic_grey_check_circle_24"
+                android:gravity="center_vertical|right"
+                android:hint="@string/lastName"
+                app:layout_constraintEnd_toStartOf="@+id/edtName"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/edtName" />
+
+            <EditText
+                android:id="@+id/edtMobile"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginTop="8dp"
+                android:drawableStart="@drawable/ic_grey_check_circle_24"
+                android:gravity="center_vertical|right"
+                android:hint="@string/mobile"
+                android:inputType="numberSigned"
+                android:imeOptions="actionNext"
+                android:maxLength="11"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="@+id/edtLastName"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintStart_toStartOf="@+id/edtLastName"
+                app:layout_constraintTop_toBottomOf="@+id/edtName" />
+
+            <EditText
+                android:id="@+id/edtPhoneNumber"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:imeOptions="actionNext"
+                android:drawableStart="@drawable/ic_grey_check_circle_24"
+                android:gravity="center_vertical|right"
+                android:hint="@string/phoneNumber"
+                android:inputType="numberSigned"
+                android:maxLength="11"
+                android:maxLines="1"
+                app:layout_constraintEnd_toEndOf="@+id/edtName"
+                app:layout_constraintStart_toStartOf="@+id/edtName"
+                app:layout_constraintTop_toTopOf="@+id/edtMobile" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/large_margin"
+                android:background="@color/light_grey"
+                app:layout_constraintTop_toBottomOf="@+id/edtMobile" />
+
+            <EditText
+                android:id="@+id/edtAddress"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:drawableStart="@drawable/ic_grey_check_circle_24"
+                android:gravity="center_vertical|right"
+                android:hint="@string/address"
+                android:maxLines="2"
+                android:minHeight="?actionBarSize"
+                android:imeOptions="actionDone"
+                app:layout_constraintEnd_toEndOf="@+id/edtPhoneNumber"
+                app:layout_constraintStart_toStartOf="@+id/edtPhoneNumber"
+                app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/swGender"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layoutDirection="rtl"
+                android:text="@string/gender"
+                android:textOff="@string/male"
+                android:textOn="@string/female"
+                app:layout_constraintEnd_toEndOf="@+id/edtMobile"
+                app:layout_constraintStart_toStartOf="@+id/edtMobile"
+                app:layout_constraintTop_toTopOf="@+id/edtAddress"
+                app:showText="true"
+                app:switchTextAppearance="@style/TextAppearance.AppCompat.Medium" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        android:layout_marginStart="@dimen/medium_margin"
+        android:layout_marginEnd="@dimen/medium_margin"
+        android:layout_marginBottom="@dimen/medium_margin"
+        android:text="@string/nextStep"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
