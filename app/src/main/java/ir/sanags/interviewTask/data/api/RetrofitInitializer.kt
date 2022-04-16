@@ -5,7 +5,6 @@ import ir.sanags.interviewTask.BuildConfig
 import ir.sanags.interviewTask.util.NoConnectivityException
 import ir.sanags.interviewTask.util.hasNetwork
 import okhttp3.*
-import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.net.SocketTimeoutException
@@ -28,8 +27,6 @@ class RetrofitInitializer {
             else throw NoConnectivityException()
         }
         .addInterceptor(AuthInterceptor())
-        .addInterceptor(
-            HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY })
         .build()
 }
 
