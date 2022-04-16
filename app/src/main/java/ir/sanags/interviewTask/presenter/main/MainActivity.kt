@@ -1,20 +1,31 @@
-package ir.sanags.interviewTask.presenter
+package ir.sanags.interviewTask.presenter.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.viewbinding.ViewBinding
+import android.util.Log
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
+import ir.sanags.interviewTask.App
 import ir.sanags.interviewTask.R
 import ir.sanags.interviewTask.databinding.ActivityMainBinding
+import ir.sanags.interviewTask.presenter.addresses.AddressesFragment
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel :MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
+        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
+        if (viewModel.isFirstInit){
+            viewModel.isFirstInit = false
+            navigateToWithoutStack(AddressesFragment())
+        }
     }
 
     override fun onDestroy() {
@@ -22,10 +33,16 @@ class MainActivity : AppCompatActivity() {
         else super.onDestroy()
     }
 
-    fun navigateTo(fragment: BaseFragment<ViewBinding>, container: Int = R.id.mainContainer) {
+    fun navigateTo(fragment: Fragment, container: Int = R.id.mainContainer) {
         supportFragmentManager.beginTransaction()
             .replace(container, fragment)
             .addToBackStack(fragment.javaClass.canonicalName)
+            .commit()
+    }
+
+    fun navigateToWithoutStack(fragment: Fragment, container: Int = R.id.mainContainer) {
+        supportFragmentManager.beginTransaction()
+            .replace(container, fragment)
             .commit()
     }
 
@@ -33,4 +50,5 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.popBackStack()
     }
 
+    fun getInjection() = (application as App).injection
 }
