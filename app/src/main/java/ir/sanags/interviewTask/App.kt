@@ -6,5 +6,5 @@ import ir.sanags.interviewTask.di.Container
 class App : Application() {
 
 
-    val di = Container(this)
+    val injection = Container(this)
 }

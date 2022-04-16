@@ -1,21 +1,20 @@
 package ir.sanags.interviewTask.data.api
 
-import ir.sanags.interviewTask.data.api.address.AddressResponse
+import retrofit2.Call
 import retrofit2.Response
-import java.io.IOException
 import java.net.SocketTimeoutException
 
 open class BaseRepository {
 
-    open suspend fun <T : Any> fetch(
-        call: Response<T>,
-        onSuccess: suspend (T?) -> Unit,
-        onFailure: suspend (message: String?) -> Unit
+    open  suspend fun <T : Any> fetch(
+        call: suspend () -> Response<T>,
+        onSuccess: suspend (T) -> Unit,
+        onFailure: suspend (message: String) -> Unit
     ) {
         try {
-            call.let {
+            call.invoke().let {
                 if (it.isSuccessful) {
-                    onSuccess(it.body())
+                    it.body()?.let { data -> onSuccess(data) }
                 } else {
                     when (it.code()) {
                         500 -> onFailure("خطا در سرور")
@@ -23,11 +22,11 @@ open class BaseRepository {
                     }
                 }
             }
-        } catch (e: IOException) {
+        } catch (e: Exception) {
             if (e is SocketTimeoutException) {
                 onFailure("زمان درخواست تمام شد. مجددا تلاش بفرمایید")
             } else {
-                onFailure(e.message)
+                e.message?.let { onFailure(it) }
             }
         }
     }
