@@ -20,9 +20,9 @@ class RetrofitInitializer {
         .build()
 
     fun httpClient(context: Context) = OkHttpClient.Builder()
-        .callTimeout(5, TimeUnit.SECONDS)
-        .readTimeout(5, TimeUnit.SECONDS)
-        .writeTimeout(10, TimeUnit.SECONDS)
+        .callTimeout(20, TimeUnit.SECONDS)
+        .readTimeout(20, TimeUnit.SECONDS)
+        .writeTimeout(30, TimeUnit.SECONDS)
         .addInterceptor {
             if (context.hasNetwork()) it.proceed(it.request())
             else throw NoConnectivityException()

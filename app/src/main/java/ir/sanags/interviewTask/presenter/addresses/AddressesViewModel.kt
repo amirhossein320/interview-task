@@ -1,7 +1,5 @@
 package ir.sanags.interviewTask.presenter.addresses
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import ir.sanags.interviewTask.data.api.address.AddressRepository
 import ir.sanags.interviewTask.data.api.address.AddressResponse
@@ -13,7 +11,6 @@ import kotlinx.coroutines.launch
 
 class AddressesViewModel(private val addressRepository: AddressRepository) : BaseViewModel() {
 
-    var isGoneToAddFragment = false
     var isFirstTime = true
 
     var addresses = listOf<AddressResponse>()

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Interview-task</string>
+    <string name="app_name">Interview-task(amir-ebrahimi)</string>
     <string name="add_address">ثبت نام</string>
     <string name="addresses">آدرس ها</string>
     <string name="insert_details">لطفا اطلاعات خود را وارد کنید</string>
@@ -17,4 +17,10 @@
     <string name="errPhoneEmpty">تلفن ثابت الزامی است</string>
     <string name="errMobileEmpty">تلفن همراه الزامی است</string>
     <string name="errAddressEmpty">آدرس الزامی است</string>
+    <string name="title_activity_maps">MapsActivity</string>
+    <string name="chooseLocation">موقعیت خود روی نقشه را انتخاب کنید</string>
+    <string name="map">موقعیت روی نقشه</string>
+    <string name="record">ثبت</string>
+    <string name="errSelectLocation">موقعیت مکانی الزامی است</string>
+    <string name="saved">آدرس ثبت شد</string>
 </resources>

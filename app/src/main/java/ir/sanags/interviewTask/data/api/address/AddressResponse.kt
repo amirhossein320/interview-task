@@ -16,8 +16,8 @@ data class AddressDto(
     var address: String,
     @SerializedName("lat") val latitude: Double,
     @SerializedName("lng") val longitude: Double,
-    @SerializedName("coordinate_mobile") var coordinateMobile: Long,
-    @SerializedName("coordinate_phone_number") var coordinatePhoneNumber: Long,
+    @SerializedName("coordinate_mobile") var coordinateMobile: String,
+    @SerializedName("coordinate_phone_number") var coordinatePhoneNumber: String,
     @SerializedName("first_name") var firstName: String,
     @SerializedName("last_name") var lastName: String,
     var gender: String
@@ -26,7 +26,7 @@ data class AddressDto(
     companion object {
         fun init() = AddressDto(
             address = "", latitude = 0.0, longitude = 0.0,
-            coordinateMobile = 0, coordinatePhoneNumber = 0,
+            coordinateMobile = "", coordinatePhoneNumber = "",
             lastName = "", firstName = "", gender = Gender.MALE.gender
         )
     }

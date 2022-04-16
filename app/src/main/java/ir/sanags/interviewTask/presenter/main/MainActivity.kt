@@ -13,7 +13,7 @@ import ir.sanags.interviewTask.presenter.addresses.AddressesFragment
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var viewModel :MainViewModel
+    private lateinit var viewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,15 +22,21 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        if (viewModel.isFirstInit){
+        if (viewModel.isFirstInit) {
             viewModel.isFirstInit = false
             navigateToWithoutStack(AddressesFragment())
         }
     }
 
-    override fun onDestroy() {
+    override fun onBackPressed() {
         if (supportFragmentManager.backStackEntryCount > 1) popBack()
-        else super.onDestroy()
+        else {
+            if (supportFragmentManager.fragments.last().childFragmentManager.backStackEntryCount >= 1){
+                supportFragmentManager.fragments.last().childFragmentManager.popBackStack()
+            }else{
+                super.onBackPressed()
+            }
+        }
     }
 
     fun navigateTo(fragment: Fragment, container: Int = R.id.mainContainer) {
@@ -46,9 +52,7 @@ class MainActivity : AppCompatActivity() {
             .commit()
     }
 
-    fun popBack() {
-        supportFragmentManager.popBackStack()
-    }
+    fun popBack() { supportFragmentManager.popBackStack() }
 
     fun getInjection() = (application as App).injection
 }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
 import com.google.android.material.snackbar.Snackbar
@@ -36,10 +37,16 @@ open class BaseFragment<viewBinding : ViewBinding>(
     }
 
     open fun navigateToChild(fragment: Fragment, container: Int) {
-        childFragmentManager.beginTransaction().replace(container, fragment).commit()
+        childFragmentManager.beginTransaction().replace(container, fragment)
+            .addToBackStack(fragment.javaClass.canonicalName).commit()
     }
 
-    open fun popBack() = (requireActivity() as MainActivity).popBack()
+    open fun popBack() {
+        parentFragment?.let {
+            if (it.childFragmentManager.backStackEntryCount > 0)
+                it.childFragmentManager.popBackStack()
+        } ?: (requireActivity() as MainActivity).popBack()
+    }
 
     open fun getInjection() = (requireActivity() as MainActivity).getInjection()
 
@@ -47,4 +54,9 @@ open class BaseFragment<viewBinding : ViewBinding>(
 
     open fun showSnackMessage(message: String) =
         Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
+
+    open fun showToastMessage(message: String) =
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+
+
 }

@@ -5,4 +5,5 @@ import ir.sanags.interviewTask.presenter.base.BaseViewModel
 class MainViewModel : BaseViewModel() {
 
     var isFirstInit = true
+    var hasNewAddress = false
 }

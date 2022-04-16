@@ -18,6 +18,7 @@ import ir.sanags.interviewTask.databinding.FragmentAddressesBinding
 import ir.sanags.interviewTask.presenter.addAdress.AddAddressFragment
 import ir.sanags.interviewTask.presenter.base.BaseFragment
 import ir.sanags.interviewTask.presenter.base.UiState
+import ir.sanags.interviewTask.presenter.main.MainViewModel
 import ir.sanags.interviewTask.util.gone
 import ir.sanags.interviewTask.util.visible
 
@@ -26,16 +27,15 @@ class AddressesFragment :
 
     private lateinit var viewModel: AddressesViewModel
     private lateinit var addressesAdapter: AddressesAdapter
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this,
             viewModelFactory {
-                initializer {
-                    AddressesViewModel(getInjection().addressRepository())
-                }
-            }
-        )[AddressesViewModel::class.java]
+                initializer { AddressesViewModel(getInjection().addressRepository()) }
+            })[AddressesViewModel::class.java]
+        mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,8 +47,9 @@ class AddressesFragment :
         onAddressesRetry()
         manageState()
         with(viewModel) {
-            if (isFirstTime || isGoneToAddFragment) {
+            if (isFirstTime || mainViewModel.hasNewAddress) {
                 isFirstTime = false
+                mainViewModel.hasNewAddress = false
                 getAddresses()
             } else addressesAdapter.submitList(addresses)
         }
