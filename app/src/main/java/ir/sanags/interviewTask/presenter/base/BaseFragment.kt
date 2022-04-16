@@ -1,4 +1,4 @@
-package ir.sanags.interviewTask.presenter
+package ir.sanags.interviewTask.presenter.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,12 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import ir.sanags.interviewTask.presenter.main.MainActivity
 
-class BaseFragment<viewBinding : ViewBinding>(
-    private val inflate: (LayoutInflater, ViewGroup?, Boolean) -> ViewBinding
+open class BaseFragment<viewBinding : ViewBinding>(
+    private val inflate: (LayoutInflater, ViewGroup?, Boolean) -> viewBinding
 ) : Fragment() {
 
-    private var _binding: ViewBinding? = null
+    private var _binding: viewBinding? = null
     val binding get() = _binding!!
 
     override fun onCreateView(
@@ -29,15 +30,17 @@ class BaseFragment<viewBinding : ViewBinding>(
         _binding = null
     }
 
-    open fun navigateTo(fragment: BaseFragment<ViewBinding>) {
+    open fun navigateTo(fragment: Fragment) {
         (requireActivity() as MainActivity).navigateTo(fragment)
     }
 
-    open fun navigateToChild(fragment: BaseFragment<ViewBinding>, container: Int) {
+    open fun navigateToChild(fragment: Fragment, container: Int) {
         childFragmentManager.beginTransaction().replace(container, fragment).commit()
     }
 
-    open fun popBack() {
-        (requireActivity() as MainActivity).popBack()
-    }
+    open fun popBack() = (requireActivity() as MainActivity).popBack()
+
+    open fun getInjection() = (requireActivity() as MainActivity).getInjection()
+
+    open fun getOrientation() = requireActivity().resources.configuration.orientation
 }

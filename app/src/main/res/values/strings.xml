@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Interview-task</string>
+    <string name="add_address">افزودن آدرس</string>
+    <string name="addresses">آدرس ها</string>
 </resources>
